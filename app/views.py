@@ -17,7 +17,7 @@ def home(request): # imagenes y favoritos
         response.raise_for_status
         character=response.json
     except request.exceptions.RequestException as e:
-        print("La imagen no pudo cargarse")
+        print("La imagen no pudo cargarse _")
         images=[]
     if request.user.is_autenticated:
         favourite_list=favourite_list.objects.filter(user=request.user)
