@@ -1,5 +1,5 @@
 # capa de vista/presentación
-
+import json
 from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
@@ -10,10 +10,19 @@ def index_page(request):
 
 # esta función obtiene 2 listados que corresponden a las imágenes de la API y los favoritos del usuario, y los usa para dibujar el correspondiente template.
 # si el opcional de favoritos no está desarrollado, devuelve un listado vacío.
-def home(request):
-    images = []
-    favourite_list = []
-
+def home(request): # imagenes y favoritos
+    enlace_api='https://rickandmortyapi.com/api/character'
+    try:
+        response=request.get(enlace_api)
+        response.raise_for_status
+        character=response.json
+    except request.exceptions.RequestException as e:
+        print("La imagen no pudo cargarse")
+        images=[]
+    if request.user.is_autenticated:
+        favourite_list=favourite_list.objects.filter(user=request.user)
+    else:
+        favourite_list = []
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
 def search(request):
