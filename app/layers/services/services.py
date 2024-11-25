@@ -7,7 +7,7 @@ from django.contrib.auth import get_user
 
 def getAllImages(input=None):
     # obtiene un listado de datos "crudos" desde la API, usando a transport.py.
-    #Se llama la funcion getAImages desde transport.py
+    #Se llama la funcion getAllImages desde transport.py
     json_collection = transport.getAllImages(input) #---> input indica la las imagenes que se filtran o traslada desde la API.
     
     # recorre cada dato crudo de la colección anterior, lo convierte en una Card y lo agrega a images.
