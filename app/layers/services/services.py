@@ -14,7 +14,7 @@ def getAllImages(input=None):
     images = []
     for image in json_collection: #---> recorre los objetos de la lista json_collection para convertir a una card y agregarlo a imagenes 
         card=translator.fromRequestIntoCard(image)
-        images.append(image)
+        images.append(card)
     return images
 
 # añadir favoritos (usado desde el template 'home.html')
